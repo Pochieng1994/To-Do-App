@@ -1,7 +1,7 @@
-.update-controller {
-  display: none;
+.item-completed:checked + .item-description {
+  background: rgb(180, 175, 175);
+  text-decoration: line-through;
 }
-
 
 
 
