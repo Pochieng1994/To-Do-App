@@ -1,7 +1,13 @@
-.item-completed:checked + .item-description {
-  background: rgb(180, 175, 175);
-  text-decoration: line-through;
+.container {
+  display: flex;
+  justify-content: center;
 }
+
+#header {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
 
 
 
