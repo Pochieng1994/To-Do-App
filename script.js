@@ -5,7 +5,7 @@ const deleteButton = document.querySelector('#delete');
 
 
 
-todoItems = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+todoItems = localStorage.getItem('text') ? JSON.parse(localStorage.getItem('text')) : [];
 
 
 function addTodo() {
@@ -17,7 +17,6 @@ function addTodo() {
   }
 
   todoItems.push(todo);
-  console.log(todoItems)
   setItem();
   listMaker(textInput);
   input.value = '';
@@ -34,10 +33,17 @@ function listMaker(text) {
   ol.appendChild(li);
 }
 
+function deleteItem(id) {
+  
+}
+
 
 addButton.addEventListener('click', function() {
+   addTodo()
+})
+
+deleteButton.addEventListener('click', function() {
   
-  addTodo()
 })
 
 
