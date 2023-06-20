@@ -22,19 +22,28 @@ function addTodo() {
   input.value = '';
 }
 
+function displayTodos() {
+  todoItems.forEach(function(todoObj) {
+  listMaker(todoObj.text)
+  })
+}
+
 function setItem() {
   let stringifiedObj = JSON.stringify(todoItems);
   localStorage.setItem('text', stringifiedObj);
 }
 
-function listMaker(text) {
+function listMaker(text) { //How to use javascript add an id attribute .... you can also create a delete button with list element
   const li = document.createElement('li');
+  const button = document.createElement('button');
   li.textContent = text;
-  ol.appendChild(li);
+  button.textContent = 'Delete'
+  ol.append(li, button);
+
 }
 
-function deleteItem(id) {
-  
+function deleteItem(id, button) {
+
 }
 
 
@@ -46,7 +55,7 @@ deleteButton.addEventListener('click', function() {
   
 })
 
-
+displayTodos();
 
 /*Now we are going to create an array where were going to store all of the items on our todo list we have 
 to check and see whether or not were using local storage if we are then we are going to initialize our array
