@@ -1,7 +1,7 @@
 const ol = document.querySelector('ol');
 const input = document.querySelector('#item');
 const addButton = document.querySelector('#add');
-const deleteButton = document.querySelector('#delete');
+
 
 
 
@@ -18,13 +18,13 @@ function addTodo() {
 
   todoItems.push(todo);
   setItem();
-  listMaker(textInput);
+  listMaker(todo);
   input.value = '';
 }
 
 function displayTodos() {
-  todoItems.forEach(function(todoObj) {
-  listMaker(todoObj.text)
+  todoItems.forEach(function(todo) {
+  listMaker(todo);
   })
 }
 
@@ -33,13 +33,13 @@ function setItem() {
   localStorage.setItem('text', stringifiedObj);
 }
 
-function listMaker(text) { //How to use javascript add an id attribute .... you can also create a delete button with list element
+function listMaker(todo) { //How to use javascript add an id attribute .... you can also create a delete button with list element
   const li = document.createElement('li');
   const button = document.createElement('button');
-  li.textContent = text;
+  li.textContent = todo.text;
+  li.setAttribute('id', todo.id)
   button.textContent = 'Delete'
   ol.append(li, button);
-
 }
 
 function deleteItem(id, button) {
@@ -51,9 +51,6 @@ addButton.addEventListener('click', function() {
    addTodo()
 })
 
-deleteButton.addEventListener('click', function() {
-  
-})
 
 displayTodos();
 
