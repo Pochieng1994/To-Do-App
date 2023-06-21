@@ -8,5 +8,11 @@
   margin-bottom: 30px;
 }
 
+button {
+  color: white;
+  background-color: red;
+  border: none;
+  
+}
 
 

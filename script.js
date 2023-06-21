@@ -33,58 +33,32 @@ function setItem() {
   localStorage.setItem('text', stringifiedObj);
 }
 
-function listMaker(todo) { //How to use javascript add an id attribute .... you can also create a delete button with list element
+function listMaker(todo) { 
   const li = document.createElement('li');
   const button = document.createElement('button');
   li.textContent = todo.text;
   li.setAttribute('id', todo.id)
   button.textContent = 'Delete'
+  button.style.cssText += 'font-size:18px; padding: 6px; border-radius: 8px;'
   ol.append(li, button);
+  button.addEventListener('click', function() {
+    deleteTodo();
+  })
 }
-
-function deleteItem(id, button) {
-
-}
-
 
 addButton.addEventListener('click', function() {
-   addTodo()
+  addTodo()
 })
+
+function deleteTodo(index) {
+  todoItems.splice(index, 1);
+  localStorage.setItem('text', JSON.stringify(todoItems));
+  location.reload();
+}
 
 
 displayTodos();
 
-/*Now we are going to create an array where were going to store all of the items on our todo list we have 
-to check and see whether or not were using local storage if we are then we are going to initialize our array
-w/ the data thats already in our local storage. If were not using local storage then were going to create a 
-new array*/
-
-/*itemsArray = localStorage.getItem('items', ) ? JSON.parse(localStorage.getItem('items')) : [];
-
-
-itemsArray.forEach(listMaker); 
-
- Now we have to place the data within our items array on our screen
-
-
-function listMaker(text) {
-  const li = document.createElement('li');
-  li.textContent = text;
-  ol.appendChild(li);
-}
-
-addButton.addEventListener('click', function() {
-  itemsArray.push(input.value);
-  localStorage.setItem('items', JSON.stringify(itemsArray));
-  listMaker(input.value);
-  input.value = '';
-})
-
-deleteButton.addEventListener('click', function() {
-  localStorage.clear();
-  ol.textContent = '';
-  itemsArray = [];
-})*/
 
 
 
