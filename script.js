@@ -5,6 +5,7 @@ const addButton = document.querySelector('#add');
 
 
 
+
 todoItems = localStorage.getItem('text') ? JSON.parse(localStorage.getItem('text')) : [];
 
 
@@ -41,12 +42,14 @@ function listMaker(todo) {
   const li = document.createElement('li');
   const button = document.createElement('button');
   li.textContent = todo.text;
-  li.setAttribute('id', todo.id)
+  li.setAttribute('id', todo.id);
   button.textContent = 'Delete'
-  button.style.cssText += 'font-size:18px; padding: 6px; border-radius: 8px;'
-  ol.append(li, button);
+  button.style.cssText += 'font-size:15px; padding: 5px; border-radius: 8px; margin-left: 20px;'
+  li.style.cssText += 'padding:5px;'
+  li.append(button);
+  ol.append(li);
   button.addEventListener('click', function() {
-    deleteTodo();
+    deleteTodo(todo.id);
   })
 }
 
@@ -54,11 +57,12 @@ addButton.addEventListener('click', function() {
   addTodo()
 })
 
-function deleteTodo() { 
+function deleteTodo(todoId) { 
   for(let i = 0; i < todoItems.length; i++) {
-    if(todoItems[i].id) {
+    if(todoItems[i].id === todoId) {
       todoItems.splice(i, 1);
       localStorage.setItem('text', JSON.stringify(todoItems));
+      document.getElementById(todoId).remove();
     }
   }
 }
@@ -66,13 +70,6 @@ function deleteTodo() {
 
 displayTodos();
 
-
-/*function deleteTodo(index) { //Pass in the ID of the todo as a parameter
-  todoItems.splice(index, 1);
-  localStorage.setItem('text', JSON.stringify(todoItems));
-  location.reload();
-}
-*/
 
 
 
