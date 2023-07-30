@@ -4,8 +4,6 @@ const addButton = document.querySelector('#add');
 
 
 
-
-
 todoItems = localStorage.getItem('text') ? JSON.parse(localStorage.getItem('text')) : [];
 
 
@@ -69,13 +67,16 @@ function deleteTodo(todoId) {
 
 function todoFromApi() {
 
+  if(localStorage.getItem('text') === null) {
+
+  }
+
   axios.get('https://jsonplaceholder.typicode.com/posts/')
   .then (response => {
-    console.log(response.data)
+    response.data[0].title
   })
 }
 
-console.log(todoFromApi)
 
 
 displayTodos();
