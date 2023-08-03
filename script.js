@@ -69,13 +69,16 @@ function todoFromApi() {
 
   if(localStorage.getItem('text') === null) {
 
-  }
-
-  axios.get('https://jsonplaceholder.typicode.com/posts/')
-  .then (response => {
-    response.data[0].title
+    axios.get('https://jsonplaceholder.typicode.com/posts/')
+    .then (response => {
+      for(let i = 0; response.length; i++) {
+        console.log(response.data[0].title)
+      }
   })
+  }
 }
+
+
 
 
 
