@@ -71,7 +71,7 @@ function todoFromApi() {
 
     axios.get('https://jsonplaceholder.typicode.com/posts/')
     .then (response => {
-      for(let i = 0; response.length; i++) {
+      for(let i = 0; i < response.length; i++) {
         console.log(response.data[0].title)
       }
   })
