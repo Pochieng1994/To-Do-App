@@ -5,7 +5,9 @@ const addButton = document.querySelector('#add');
 
 
 todoItems = localStorage.getItem('text') ? JSON.parse(localStorage.getItem('text')) : [];
-
+//were checking to see if there are any todoitems in localstorage if there are we are grabbing 
+//what's stored in localstorage and parsing it, parsing is turning something from a string
+//back into the regular object that it is.
 
 function addTodo() {
   let textInput = input.value;
@@ -21,13 +23,13 @@ function addTodo() {
 
   todoItems.push(todo);
   setItem();
-  listMaker(todo);
+  addTodoToUi(todo);
   input.value = '';
 }
 
 function displayTodos() {
   todoItems.forEach(function(todo) {
-  listMaker(todo);
+  addTodoToUi(todo);
   })
 }
 
@@ -36,7 +38,7 @@ function setItem() {
   localStorage.setItem('text', stringifiedObj);
 }
 
-function listMaker(todo) { 
+function addTodoToUi(todo) { 
   const li = document.createElement('li');
   const button = document.createElement('button');
   li.textContent = todo.text;
@@ -66,13 +68,12 @@ function deleteTodo(todoId) {
 }
 
 function todoFromApi() {
-
   if(localStorage.getItem('text') === null) {
 
     axios.get('https://jsonplaceholder.typicode.com/posts/')
-    .then (response => {
-      for(let i = 0; i < response.length; i++) {
-        console.log(response.data[0].title)
+    .then (response => { 
+        for(let i = 0; i < response.data.length; i++) {
+        console.log(response.data[i].title)
       }
   })
   }
