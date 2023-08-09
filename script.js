@@ -9,8 +9,7 @@ todoItems = localStorage.getItem('text') ? JSON.parse(localStorage.getItem('text
 //what's stored in localstorage and parsing it, parsing is turning something from a string
 //back into the regular object that it is.
 
-function addTodo() {
-  let textInput = input.value;
+function addTodo(textInput) {
 
   if(textInput === '') {
     return;
@@ -54,7 +53,8 @@ function addTodoToUi(todo) {
 }
 
 addButton.addEventListener('click', function() {
-  addTodo()
+  let textInput = input.value;
+  addTodo(textInput)
 })
 
 function deleteTodo(todoId) { 
@@ -68,12 +68,14 @@ function deleteTodo(todoId) {
 }
 
 function todoFromApi() {
+
   if(localStorage.getItem('text') === null) {
 
     axios.get('https://jsonplaceholder.typicode.com/posts/')
     .then (response => { 
-        for(let i = 0; i < response.data.length; i++) {
-        console.log(response.data[i].title)
+        for(let i = 0; i < 5; i++) { 
+        todoItems.push(response.data[i].title);
+        console.log(todoItems)     
       }
   })
   }
