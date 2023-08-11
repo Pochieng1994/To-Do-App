@@ -9,15 +9,17 @@ todoItems = localStorage.getItem('text') ? JSON.parse(localStorage.getItem('text
 //what's stored in localstorage and parsing it, parsing is turning something from a string
 //back into the regular object that it is.
 
-function addTodo(textInput) {
+function addTodo() {
+  let textInput = input.value;
 
   if(textInput === '') {
     return;
   }
 
+
   const todo = {
     text: textInput,
-    id: Date.now(),
+    id: Math.floor(Math.random() * 10000),
   }
 
   todoItems.push(todo);
@@ -53,8 +55,8 @@ function addTodoToUi(todo) {
 }
 
 addButton.addEventListener('click', function() {
-  let textInput = input.value;
-  addTodo(textInput)
+  addTodo()
+
 })
 
 function deleteTodo(todoId) { 
@@ -73,22 +75,42 @@ function todoFromApi() {
 
     axios.get('https://jsonplaceholder.typicode.com/posts/')
     .then (response => { 
-        for(let i = 0; i < 5; i++) { 
-        todoItems.push(response.data[i].title);
-        console.log(todoItems)     
+        for(let i = 0; i < 5; i++) {
+          let responseData = response.data[i].title;
+
+            const todo = {
+              text: responseData,
+              id: Math.floor(Math.random() * 10000),
+            }
+
+            todoItems.push(todo);
+            setItem();
+            addTodoToUi(todo);
       }
-  })
+    })
   }
 }
 
 
 
-
+todoFromApi()
 
 displayTodos();
 
 
+/* 
+//addTodo(responseData);
+            const todoApi = {
+              text: responseData,
+              id: Date.now(),
+            }
 
+            todoItems.push(todoApi);
+            setItem();
+            addTodoToUi(todoApi)
+            id: Date.now()
+
+            */
 
 
 
