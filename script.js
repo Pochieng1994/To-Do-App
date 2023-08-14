@@ -91,26 +91,10 @@ function todoFromApi() {
   }
 }
 
+todoFromApi();
 
-
-todoFromApi()
 
 displayTodos();
-
-
-/* 
-//addTodo(responseData);
-            const todoApi = {
-              text: responseData,
-              id: Date.now(),
-            }
-
-            todoItems.push(todoApi);
-            setItem();
-            addTodoToUi(todoApi)
-            id: Date.now()
-
-            */
 
 
 
