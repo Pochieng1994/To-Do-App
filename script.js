@@ -5,9 +5,7 @@ const addButton = document.querySelector('#add');
 
 
 todoItems = localStorage.getItem('text') ? JSON.parse(localStorage.getItem('text')) : [];
-//were checking to see if there are any todoitems in localstorage if there are we are grabbing 
-//what's stored in localstorage and parsing it, parsing is turning something from a string
-//back into the regular object that it is.
+
 
 function addTodo() {
   let textInput = input.value;
